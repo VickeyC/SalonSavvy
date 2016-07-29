@@ -1,0 +1,23 @@
+{
+  "name": "SalonSavvy",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.x",
+    "jquery": "2.x",
+    "jquery-validation": "1.x",
+    "jquery-validation-unobtrusive": "3.x",
+    "angular": "1.x",
+    "angular-resource": "1.x",
+    "angular-bootstrap": "1.x",
+    "angular-animate": "1.x",
+    "angular-touch": "1.x",
+    "angular-ui-router": "0.x",
+    "less": "2.6.1",
+    "angular-google-maps": "2.3.2",
+    "angular-ui-grid": "3.1.1",
+    "moment": "^2.14.1"
+  },
+  "resolutions": {
+    "angular": "1.2 - 1.5"
+  }
+}

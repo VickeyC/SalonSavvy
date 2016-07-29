@@ -1,0 +1,46 @@
+﻿body {
+    /*.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin: auto;*/
+     
+    background: #dfe8e5; /* Old browsers */
+    background: -moz-radial-gradient(center, ellipse cover,  #dfe8e5 10%, #8cab9c 74%, #537e6d 100%); /* FF3.6-15 */
+    background: -webkit-radial-gradient(center, ellipse cover,  #dfe8e5 10%,#8cab9c 74%,#537e6d 100%); /* Chrome10-25,Safari5.1-6 */
+    background: radial-gradient(ellipse at center,  #dfe8e5 10%,#8cab9c 74%,#537e6d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dfe8e5', endColorstr='#537e6d',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+}
+
+
+.slider-size {
+    height: 400px; /* This is your slider height */
+}
+.carousel {
+    width:100%; 
+    margin:0 auto; /* center your carousel if other than 100% */ 
+    max-height: 450px !important;
+    min-height: 450px;
+}
+
+#bootstrap-slider .carousel-inner .img-responsive {
+  max-height: 450px !important;
+  min-height: 450px;
+}
+
+.menu-back .container:first-child {
+  display: none;
+}
+.item h1 {
+    width: 10em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+}
+.carousel-indicators li, .carousel-indicators .active {
+    border-color: #000;
+}
+.carousel-indicators .active {
+    background-color: #000;
+}
+

@@ -1,0 +1,44 @@
+﻿<h4>Click on the day below to see our stylist's availability</h4>
+<br />
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#monday">Monday</a></li>
+    <li><a data-toggle="tab" href="#tuesday">Tuesday</a></li>
+    <li><a data-toggle="tab" href="#wednesday">Wednesday</a></li>
+    <li><a data-toggle="tab" href="#thursday">Thursday</a></li>
+    <li><a data-toggle="tab" href="#friday">Friday</a></li>
+    <li><a data-toggle="tab" href="#saturday">Saturday</a></li>
+</ul>
+
+<div class="tab-content">
+    <div id="{{day}}" class="tab-pane fade in active" ng-repeat="(day, stylists) in controller.schedule">
+        <div class="container">
+            <h2>{{day}}</h2>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Stylist</th>
+                        <th>9 AM</th>
+                        <th>10 AM</th>
+                        <th>11 AM</th>
+                        <th>Noon</th>
+                        <th>1 PM</th>
+                        <th>2 PM</th>
+                        <th>3 PM</th>
+                        <th>4 PM</th>
+                        <th>5 PM</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="{{day}}" ng-repeat="(stylist, timeSlots) in stylists">
+                        <td>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#addModal">select</button>
+                        </td>
+                        <td>{{stylist}}</td>
+                        <td ng-repeat="(time, appt) in timeSlots" ng-class="{red: appt}">{{appt.customerName}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
