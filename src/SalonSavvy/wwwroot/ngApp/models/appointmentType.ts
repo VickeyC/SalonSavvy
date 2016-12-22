@@ -4,12 +4,14 @@
     {
         typeName: string;
         typeDuration: number;
+        typeSkill: string;
 
 
 
         constructor() {
             this.typeName;
             this.typeDuration;
+            this.typeSkill;
         }
     }   
 } 

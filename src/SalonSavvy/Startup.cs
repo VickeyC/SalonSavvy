@@ -53,9 +53,11 @@ namespace SalonSavvy
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-
+            services.AddScoped<GenericRepository>();
             services.AddScoped<AppointmentTypeService>();
-            services.AddScoped<AppointmentTypeRepository>();
+            services.AddScoped<AppointmentService>();
+            services.AddScoped<_userService>();
+            
 
             
                         // add security policies

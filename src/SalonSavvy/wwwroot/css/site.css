@@ -18,6 +18,10 @@ body {
     padding-left: 15px;
     padding-right: 15px;
 }
+.text-content {
+    padding-left: 20px;
+    padding-right: 20px;
+}
 
 #jumbobg {
     background-image: url('../ngapp/images/vickeys_pano_logo_attempt.jpg');
@@ -26,7 +30,9 @@ body {
     background-size: 960px;
 }
 .big-banner {
-    margin: 0px 0px 10px 130px;
+    display: block;
+    margin: 0px auto;
+    vertical-align: middle;
 }
 
 /* set image sizes*/
@@ -80,3 +86,14 @@ textarea {
     height: 600px;
 }
 
+/* md-tabs */
+.all-tabs {
+    font-size:20px;
+    color:#672046
+}
+
+/* md-card image*/
+.img-fixed {
+    height: 100px;
+    width: 100px;
+}

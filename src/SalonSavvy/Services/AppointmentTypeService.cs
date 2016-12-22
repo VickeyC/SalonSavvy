@@ -1,39 +1,41 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using SalonSavvy.Data;
-using SalonSavvy.Infrastructure;
-using SalonSavvy.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using SalonSavvy.Models;
+using SalonSavvy.Data;
 
 namespace SalonSavvy.Services
 {
-    public class AppointmentTypeService
-    {
-        private AppointmentTypeRepository _appointmentTypeRepo;
-        public AppointmentTypeService(AppointmentTypeRepository atr) {
-            _appointmentTypeRepo = atr;
+    public class AppointmentTypeService {
+        private GenericRepository _repo;
+        public AppointmentTypeService(GenericRepository repo) {
+            _repo = repo;
         }
 
         // get a list of all appointment types
         public IList<AppointmentTypeDTO> GetAllAppointmentTypes() {
 
-            return (from t in _appointmentTypeRepo.GetAllAppointmentTypes()
+            return (from t in _repo.Query<AppointmentType>()
                     select new AppointmentTypeDTO() {
                         Id = t.Id,
                         TypeName = t.TypeName,
-                        TypeDuration = t.TypeDuration
+                        TypeDuration = t.TypeDuration,
+                        TypeSkill = t.TypeSkill
                     }).ToList();
         }
 
         // find a specific appointment type by id
-        public IList<AppointmentTypeDTO> FindAppointmentType( int id) {
+        public IList<AppointmentTypeDTO> FindAppointmentType(int id) {
 
-            return (from t in _appointmentTypeRepo.FindAppointmentType(id)
-                    select new AppointmentTypeDTO() { 
+            return (from t in _repo.Query<AppointmentType>()
+                    where t.Id == id
+                    select new AppointmentTypeDTO() {
                         TypeName = t.TypeName,
-                        TypeDuration = t.TypeDuration
+                        TypeDuration = t.TypeDuration,
+                        TypeSkill = t.TypeSkill
+
                     }).ToList();
         }
 
@@ -41,29 +43,43 @@ namespace SalonSavvy.Services
         public void AddAppointmentType(AppointmentTypeDTO dto) {
             var dbItem = new AppointmentType() {
                 TypeName = dto.TypeName,
-                TypeDuration = dto.TypeDuration
+                TypeDuration = dto.TypeDuration,
+                TypeSkill = dto.TypeSkill
             };
 
-            _appointmentTypeRepo.AddAppointmentType(dbItem);
+            _repo.Add(dbItem);
         }
 
 
         //update an appointment type
         public void UpdateAppointmentType(AppointmentTypeDTO dto) {
-            var dbItem = _appointmentTypeRepo.FindAppointmentType(dto.Id).FirstOrDefault();
 
-            dbItem.TypeName = dto.TypeName;
-            dbItem.TypeDuration = dto.TypeDuration;
+            // get the appointment type to update
+            var dbItem = _repo.Query<AppointmentType>()
+                .FirstOrDefault(t => t.Id == dto.Id);
 
-            _appointmentTypeRepo.SaveChanges();
+            // perform the update
+            if(dbItem != null) {
+                dbItem.TypeName = dto.TypeName;
+                dbItem.TypeDuration = dto.TypeDuration;
+                dbItem.TypeSkill = dto.TypeSkill;
+
+                _repo.Update<AppointmentType>(dbItem);
+            }
+
+
         }
 
         // delete an appointment type
         public void DeleteAppointmentType(AppointmentTypeDTO dto) {
-            var dbItem = _appointmentTypeRepo.FindAppointmentType(dto.Id).FirstOrDefault();
+            // get the appointment type to delete
+            var dbItem = _repo.Query<AppointmentType>()
+                .FirstOrDefault(t => t.Id == dto.Id);
 
-            dbItem.Id = dto.Id;
-            _appointmentTypeRepo.DeleteAppointmentType(dbItem);
+            // perform the delete
+            if(dbItem != null) {
+                _repo.Delete<AppointmentType>(dbItem);
+            }
         }
 
     }

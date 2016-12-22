@@ -19,21 +19,13 @@ namespace SalonSavvy.Controllers
 
         // get a list of appointment types
         [HttpGet]
-        [Authorize(Policy = "AdminOnly")]
         public IList<AppointmentTypeDTO> Get() {
 
             return _appointmentTypeService.GetAllAppointmentTypes();
 
         }
 
-        //[HttpGet("{id}")]
-        //public AppointmentTypeDTO Get(int id) {
-
-        //    return _appointmentTypeService.FindAppointmentType();
-        //}
-
-
-
+        
         // add a new appointment type
         [HttpPost]
         [Authorize(Policy = "AdminOnly")]

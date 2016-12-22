@@ -3,10 +3,10 @@
 <head>
     <title>Salon Savvy</title>
     
-    <!--<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />-->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link href="~/lib/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" />
-    <script src="https://use.fontawesome.com/f8f785a108.js"></script>
+    <link href="~/lib/angular-material/angular-material.css" rel="stylesheet" />
+    @*<script src="https://use.fontawesome.com/005173bdd3.js"></script>*@
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/ngApp/css/home.css" rel="stylesheet" />
     
@@ -14,22 +14,9 @@
 </head>
 <body ng-controller="AccountController as account">
     
-    @*<div class="container">
-        <h1>SalonSavvy</h1>
-        <div>
-          <a href="/">Home</a> /
-          <a href="/about">About</a> /
-          <a href="/ourTeam">Our Savvy Team</a> /
-          <a href="/products">Products</a> /
-          <a href="/location">Location</a> /*@
-
-    @*/ <a href="/secret">Secret</a> /
-        <a href="/login" ng-show="!account.isLoggedIn()">Login</a>
-        <a href="#" ng-click="account.logout()" ng-show="account.isLoggedIn()">Logout</a>
-        <div ng-show="account.isLoggedIn()">
-            [{{account.getUserName()}}]
-        </div>*@
-    @*</div>*@
+    <div class="big-banner">
+        <img src="~/ngApp/images/SalonSavvyWide.png" class="big-banner" height="300" width="500" />
+    </div>
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -60,16 +47,13 @@
             </div>
         </div>
     </nav>
-    <hr />
+    @*<hr />*@
 
     @*<div class="container">
         <div class="jumbotron" id="jumbobg">
         </div>
     </div>*@
-    <div class="big-banner">
-        <img src="~/ngApp/images/Vickeys_pano_logo_attempt.jpg" width ="1200" height ="200" />   
-    </div>
-
+    
     <ui-view></ui-view>
 
     <!-- Library Files -->
@@ -78,10 +62,13 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/lib/angular-resource/angular-resource.js"></script>
     <script src="~/lib/angular-animate/angular-animate.js"></script>
-    <script src="~/lib/angular-touch/angular-touch.js"></script>
-    <script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    @*<script src="~/lib/angular-touch/angular-touch.js"></script>*@
     <script src="~/lib/angular-ui-router/release/angular-ui-router.js"></script>
-    <script src="~/lib/angular-google-maps/dist/angular-google-maps.js"></script>
+    <script src="~/lib/angular-aria/angular-aria.js"></script>
+    <script src="~/lib/angular-material/angular-material.js"></script>
+    <script src="~/lib/angular-messages/angular-messages.js"></script>
+    @*<script src="~/lib/angular-google-maps/dist/angular-google-maps.js"></script>*@
+    <script src="~/lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="~/lib/lodash/dist/lodash.js"></script>
     <script src="~/lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJgb1EMJAHnw0P6UO5FMfiDsf_6DT_vsU&callback=angular.noop" async defer></script>

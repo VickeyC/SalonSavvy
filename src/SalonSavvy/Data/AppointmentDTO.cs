@@ -8,9 +8,9 @@ namespace SalonSavvy.Data {
     public class AppointmentDTO {
         public int Id { get; set; }
         
-        public string CustomerName { get; set; }
+        public UserDTO CustomerUser { get; set; }
 
-        public string StylistName { get; set; }
+        public UserDTO TechUser { get; set; }
 
         public DateTime AppointmentDateTime { get; set; }
         

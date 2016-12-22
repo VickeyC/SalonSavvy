@@ -1,0 +1,139 @@
+﻿<!--Add Modal Starts Here------------------------------------------------------------------------>
+<!--<!--<script type="text/ng-template" id="addModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Add New Appointment</h5>
+    </div> <!--modal-header-->
+<!--<div class="modal-body">
+    <div class="container">
+        <div class="form-horizontal" role="form">
+            <br />
+            <div class="form-group">
+                <label for="stylistName" class="col-sm-1 control-label">Stylist:</label>
+
+                <div class="col-sm-8">
+                    <input id="stylist" name="stylist" ng-model="modal.stylist" class="form-control" readonly>{{modal.stylist.stylist}}</>
+                </div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />
+<div class="form-group">
+    <label for="typeName" class="col-sm-1 control-label">Appointment Type:</label>
+    <br />
+    <div class="col-sm-8">
+        <select id="typeName" class="form-control"
+                ng-model="modal.appointmentTypes"
+                ng-options="choice for typeName in appointmentTypes">
+            <option value="">-- choose appointment type --</option>
+        </select>-->
+<!--></div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />-->
+<!--<div class="form-group">
+    <label for="appointmentTime" class="col-sm-1 control-label">Appointment Time:</label>
+    <br />
+    <div class="col-sm-8">-->
+<!--actualValue as Display for variable in array-->
+<!--<select id="appointmentTime" class="form-control"
+        ng-model="timeSlotSelection"
+        ng-options="slot as slot for slot in modal.availableSlots">
+        <option value="">-- choose available time slot --</option>
+</select>-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--</div><!--form-horizontal-->
+<!--</div><!--container-->
+<!--</div><!--modal-body-->-->
+
+<!--<div class="modal-footer">
+    <input type="submit" class="btn btn-default" value="Schedule" ng-click="$close(apptType)"></>
+    <button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>-->
+<!--</div><!--modal-footer-->
+<!--</script>-->
+<!--Update Modal starts here------------------------------------------------------------------>
+<!--<script type="text/ng-template" id="updateModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Update Appointment</h5>-->
+<!--</div> <!--modal-header-->
+<!--<div class="modal-body">
+    <div class="container">
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="typeName" class="col-sm-1 control-label">Appointment Type:</label>
+                <br />
+                <div class="col-sm-8">
+                    <input id="typeName" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeName">-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />
+<div class="form-group">
+    <label for="stylistName" class="col-sm-1 control-label">Stylist Name:</label>
+    <br />
+    <div class="col-sm-8">
+        <input id="stylistName" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.stylistName" />-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />-->
+<!--<div class="form-group">
+    <label for="appointmentTime" class="col-sm-1 control-label">AppointmentTime:</label>
+    <br />
+    <div class="col-sm-8">
+        <input id="appointmentTime" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.appointmentTime" />-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--</form>-->
+<!--</div><!--container-->
+<!--</div><!--modal-body-->
+<!--<div class="modal-footer">
+    <input type="submit" ng-click="modal.updateAppointment()" class="btn btn-default" value="Schedule"></>-->
+<!--<button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>
+</div><!--modal-footer-->
+<!--</script>
+
+
+<!--Delete Modal starts here---------------------------------------------------------------------->
+<!--<script type="text/ng-template" id="deleteModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Delete Selected Appointment</h5>-->
+<!--</div><!--modal-header-->
+<!--<div class="modal-body">
+    <div class="container">
+        <form role="form" class="form-horizontal">
+            <div class="form-group">
+                <label for="typeName" class="col-sm-1 control-label">Appointment Type:</label>
+                <br />
+                <div class="col-sm-8">
+                    <input id="typeName" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeName" />-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />
+<div class="form-group">
+    <label for="stylistName" class="col-sm-1 control-label">Stylist Name:</label>
+    <br />
+    <div class="col-sm-8">
+        <input id="stylistName" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.stylistName" />-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--<br />
+<div class="form-group">
+    <label for="appointmentTime" class="col-sm-1 control-label">Appointment Time:</label>
+    <br />
+    <div class="col-sm-8">
+        <input id="appointmentTime" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.appointmentTime" />-->
+<!--</div><!--col-sm-8-->
+<!--</div><!--form-group-->
+<!--</form>
+</div><!--container-->
+<!--</div><!--modal-body-->
+<!--<div class="modal-footer">
+    <input type="submit" ng-click="modal.deleteAppointmentType()" class="btn btn-default" value="Delete"></>
+    <button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>-->
+<!--</div><!--modal-footer-->
+<!--</script>-->

@@ -1,6 +1,6 @@
 namespace SalonSavvy {
 
-    angular.module("SalonSavvy", ['ui.router', 'ngResource', 'ui.bootstrap']).config((
+    angular.module("SalonSavvy", ['ui.router', 'ngResource', 'ui.bootstrap', 'ngMaterial', 'ngMessages']).config((
         $stateProvider: ng.ui.IStateProvider,
         $urlRouterProvider: ng.ui.IUrlRouterProvider,
         $locationProvider: ng.ILocationProvider
@@ -110,5 +110,4 @@ namespace SalonSavvy {
         $httpProvider.interceptors.push('authInterceptor');
     });
 
-    
 }

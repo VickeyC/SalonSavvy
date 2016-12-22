@@ -20,6 +20,13 @@ namespace SalonSavvy.Infrastructure
                    select t;
         }
 
+        // find all appointment types
+        public IQueryable<AppointmentType> GetAllAppointmentTypes() {
+            return from at in _db.AppointmentTypes
+                   select at;
+        }
+
+
         public IQueryable<Appointment> GetUpcommingAppointments(DateTime start) {
             var end = start.AddDays(7);
 

@@ -10,5 +10,6 @@ namespace SalonSavvy.Data
         public int Id { get; set; }
         public string TypeName { get; set; }
         public string TypeDuration { get; set; }
+        public string TypeSkill { get; set; }
     }
 }

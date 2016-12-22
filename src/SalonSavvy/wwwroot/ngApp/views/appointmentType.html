@@ -3,6 +3,7 @@
         <tr>
             <th>Appointment Type</th>
             <th>Appointment Duration</th>
+            <th>Skill Type</th>
             <th>Update?</th>
             <th>Delete?</th>
         </tr>
@@ -11,6 +12,7 @@
         <tr ng-repeat="appointmentType in controller.appointmentTypes">
             <td>{{appointmentType.typeName}}</td>
             <td>{{appointmentType.typeDuration}}</td>
+            <td>{{appointmentType.typeSkill}}</td>
             <td><button ng-click="controller.openUpdateModal(appointmentType)">Update</button></td>
             <td><button ng-click="controller.openDeleteModal(appointmentType)">Delete</button></td>
         </tr>
@@ -21,6 +23,7 @@
 <button class="btn btn-default" ng-click="controller.openAddModal()">Add An Appointment Type</button>
 
 
+<!--Add Modal starts here------------------------------------------------------------------------>
 <script type="text/ng-template" id="addModalAppointmentType.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="$dismiss()">
@@ -39,12 +42,22 @@
                         <input id="typeName" type="text" size="20" class="form-control" placeholder="Haircut, Color, etc." ng-model="apptType.typeName">
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
+
                 <br />
                 <div class="form-group">
                     <label for="typeDuration" class="col-sm-1 control-label">Appointment Duration:</label>
                     <br />
                     <div class="col-sm-8">
                         <input id="typeDuration" type="text" size="20 " class="form-control" placeholder="Number of minutes for appointment" ng-model="apptType.typeDuration">
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeSkill" class="col-sm-1 control-label">Skill Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeSkill" type="text" size="20 " class="form-control" placeholder="Stylist, Nail Tech, Estician" ng-model="apptType.typeSkill">
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
             </div><!--form-horizontal-->
@@ -58,6 +71,7 @@
 </script>
 
 
+<!--Update Modal starts here-------------------------------------------------------------------------------->
 <script type="text/ng-template" id="updateModalAppointmentType.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="$dismiss()">
@@ -76,12 +90,22 @@
                         <input id="typeName" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeName">
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
+
                 <br />
                 <div class="form-group">
                     <label for="typeDuration" class="col-sm-1 control-label">Appointment Duration:</label>
                     <br />
                     <div class="col-sm-8">
                         <input id="typeDuration" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeDuration"/>
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeSkill" class="col-sm-1 control-label">Skill Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeSkill" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeSkill" />
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
             </form>
@@ -94,7 +118,7 @@
     </div><!--modal-footer-->
 </script>
 
-
+<!--Delete Modal starts here-------------------------------------------------------------------------->
 <script type="text/ng-template" id="deleteModalAppointmentType.html">
     <div class="modal-header">
         <button type="button" class="close" ng-click="$dismiss()">
@@ -113,12 +137,22 @@
                         <input id="typeName" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeName" />
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
+
                 <br />
                 <div class="form-group">
                     <label for="typeDuration" class="col-sm-1 control-label">Appointment Duration:</label>
                     <br />
                     <div class="col-sm-8">
                         <input id="typeDuration" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeDuration"/>
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeSkill" class="col-sm-1 control-label">Skill Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeSkill" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeSkill" />
                     </div><!--col-sm-8-->
                 </div><!--form-group-->
             </form>

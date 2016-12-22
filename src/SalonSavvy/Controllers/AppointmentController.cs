@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SalonSavvy.Data;
 using SalonSavvy.Services;
+using SalonSavvy.ViewModels.Home;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,35 +15,35 @@ namespace SalonSavvy.Controllers
     public class AppointmentController:Controller {
 
         private AppointmentService _appointmentService;
-        public AppointmentController(AppointmentService a) {
+        private _userService _userService;
+        private AppointmentTypeService _appointmentTypeService;
+        public AppointmentController(AppointmentService a, _userService u, AppointmentTypeService at) {
             _appointmentService = a;
+            _userService = u;
+            _appointmentTypeService = at;
         }
 
+        
+        [HttpGet("techAppointments")]
 
-        // get a list of appointments
-        //[HttpGet]
-        //public IList<AppointmentDTO> Get() {
+        // /api/appointments/techAppointments
+        public IEnumerable<TechAppointment> Get() {
 
-        //    return _appointmentService.GetAllAppointments();
+            return _appointmentService.GetUpcomingAppointments();
 
+        }
+
+        //[HttpGet ("users")]
+        //public IList<UserDTO> GetAllTechUsers() {
+
+        //    return _userService.GetAllTechUsers();
         //}
-
-        //{
-        //    "2016-07-28T00:00:00": [
-        //        {}, // appt dto
-        //        {}, // appt dto
-        //        {}, // appt dto
-        //        {}  // appt dto
-        //    ]
-        //}
-
 
         // GET /api/appointment/schedule
-        [HttpGet("schedule")]
-        //[HttpGet]
-        public IDictionary<DateTime, IList<AppointmentDTO>> GetWeekSchedule() {
-            return _appointmentService.GetUpcommingAppointments();
-        }
+        //[HttpGet("schedule")]
+        //public IDictionary<DateTime, IList<AppointmentDTO>> GetWeekSchedule() {
+        //    return _appointmentService.GetUpcommingAppointments();
+        //}
 
         //[HttpGet("{id}")]
         //public AppointmentDTO Get(int id) {
@@ -49,47 +51,51 @@ namespace SalonSavvy.Controllers
         //    return _appointmentService.FindAppointment();
         //}
 
-
+        //// get the list of appointment types
+        //[HttpGet]
+        //public IList<AppointmentTypeDTO> Get() {
+        //    return _appointmentTypeService.GetAllAppointmentTypes();
+        //}
 
         // add a new appointment
-        [HttpPost]
-        public IActionResult PostAppointment([FromBody]AppointmentDTO appointment) {
-            if(!ModelState.IsValid) {
-                return BadRequest(this.ModelState);
-            }
+        //[HttpPost]
+        //public IActionResult PostAppointment([FromBody]AppointmentDTO appointment) {
+        //    if(!ModelState.IsValid) {
+        //        return BadRequest(this.ModelState);
+        //    }
 
-            _appointmentService.AddAppointment(appointment);
+        //    _appointmentService.AddAppointment(appointment);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
         // update the appointment
-        [HttpPost("{id}")]
-        public IActionResult UpdateAppointment([FromBody]AppointmentDTO appointment) {
-            if(!ModelState.IsValid) {
-                return BadRequest(this.ModelState);
-            }
+        //[HttpPost("{id}")]
+        //public IActionResult UpdateAppointment([FromBody]AppointmentDTO appointment) {
+        //    if(!ModelState.IsValid) {
+        //        return BadRequest(this.ModelState);
+        //    }
 
 
-            _appointmentService.UpdateAppointment(appointment);
+        //    _appointmentService.UpdateAppointment(appointment);
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
 
 
         // delete an appointment
-        [HttpDelete("{id}")]
-        public IActionResult DeleteAppointment(int id, AppointmentDTO appointment) {
-            if(!ModelState.IsValid) {
-                return BadRequest(this.ModelState);
-            }
+        //[HttpDelete("{id}")]
+        //public IActionResult DeleteAppointment(int id, AppointmentDTO appointment) {
+        //    if(!ModelState.IsValid) {
+        //        return BadRequest(this.ModelState);
+        //    }
 
 
-            _appointmentService.DeleteAppointment(appointment);
+        //    _appointmentService.DeleteAppointment(appointment);
 
 
-            return Ok();
+        //    return Ok();
 
-        }
+        //}
     }
 }

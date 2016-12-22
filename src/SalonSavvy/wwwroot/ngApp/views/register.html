@@ -1,4 +1,4 @@
-<h1>Register</h1>
+<!--<h1>Register</h1>
 
 <fieldset>
     <legend>Register with a Social Provider</legend>
@@ -34,4 +34,73 @@
         <input type="submit" value="Register" />
     </form>
 
-</fieldset>
+</fieldset>-->
+<!--<div class="width100 height100">-->
+<div flex-lg layout="column" layout-align="top center">
+    <md-card>
+        <img src="~/ngApp/images/SalonSavvySquared.png" class="img-fixed" alt="Salon Savvy Logo"/>
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-title">Register for your Salon Savvy Account!</span>
+                <!--<span class="md-subhead">Register for your Salon Savvy Account!</span>-->
+            </md-card-header-text>
+        </md-card-header>
+        <!--<md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Registration</span>
+            </md-card-title-text>
+        </md-card-title>-->
+        <md-card-content>
+            <form ng-submit="controller.register()">
+                <!--<md-input-container class="md-block" md-no-float flex="30">-->
+                <md-input-container class="md-block" md-no-float>
+                        <div layout="row" flex>
+                            <ng-md-icon icon="account_box" style="fill:#000000"></ng-md-icon>
+                            <input ng-required="true" name="userName" ng-model="controller.registerUser.userName" placeholder="Login User Name" />
+                        </div>
+                    </md-input-container>
+
+
+                <!--<md-input-container class="md-block" md-no-float flex="30">-->
+                <md-input-container class="md-block" md-no-float>
+                    <div layout="row" flex>
+                        <ng-md-icon icon="email" style="fill:#000000"></ng-md-icon>
+                        <input ng-required="true" name="userEmail" type="email" ng-model="controller.registerUser.email" placeholder="Login Email" />
+                    </div>
+                </md-input-container>
+
+
+                <!--<md-input-container class="md-block" md-no-float flex="30">-->
+                <md-input-container class="md-block" md-no-float>
+                    <div layout="row" flex>
+                        <ng-md-icon icon="add_location" style="fill:#000000"></ng-md-icon>
+                        <input ng-required="true" name="userAddress" ng-model="controller.registerUser.address" placeholder="Address" />
+                    </div>
+                </md-input-container>
+
+                <!--<md-input-container class="md-block" md-no-float flex="30">-->
+                <md-input-container class="md-block" md-no-float>
+                    <div layout="row" flex>
+                        <ng-md-icon icon="enhanced_encryption" style="fill:#000000"></ng-md-icon>
+                        <input type="password" ng-required="true" name="password" ng-model="controller.registerUser.password" placeholder="Login password" />
+                    </div>
+                </md-input-container>
+
+
+                <!--<md-input-container class="md-block" md-no-float flex="30">-->
+                <md-input-container class="md-block" md-no-float>
+                    <div layout="row" flex>
+                        <ng-md-icon icon="enhanced_encryption" style="fill:#000000"></ng-md-icon>
+                        <input type="password" ng-required="true" name="confirmPassword" ng-model="controller.registerUser.confirmPassword" placeholder="Confirm password" />
+                    </div>
+                </md-input-container>
+
+
+
+                <md-button class="btn1 md-raised md-cornered" ng-disabled="simple.$invalid" type="submit">Register</md-button>
+
+            </form>
+        </md-card-content>
+    </md-card>
+</div>
+
