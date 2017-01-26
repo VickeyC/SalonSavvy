@@ -9,8 +9,7 @@ namespace SalonSavvy.ViewModels.Home
     {
         public int Id { get; set; }
         public DateTime AppointmentDateTime { get; set; }
-        public int AppointmentTypeId { get; set; }
-        public ICollection<AppointmentTypeViewModel> AppointmentType { get; set; }
-        public ICollection<CustomerAppointmentsViewModel> CustomerAppointment { get; set; }
+        public string AppointmentTypeName { get; set; }
+        public string CustomerName { get; set; }
     }
 }

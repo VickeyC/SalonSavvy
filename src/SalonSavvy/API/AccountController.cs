@@ -12,6 +12,7 @@ using SalonSavvy.Models;
 using SalonSavvy.Services;
 using SalonSavvy.ViewModels.Account;
 
+
 namespace SalonSavvy.Controllers
 {
     [Authorize]
@@ -43,10 +44,9 @@ namespace SalonSavvy.Controllers
         {
             var user = await _userManager.FindByNameAsync(userName);
             var claims = await _userManager.GetClaimsAsync(user);
-            var vm = new UserViewModel
-            {
+            var vm = new UserViewModel {
                 UserName = user.UserName,
-                Claims = claims.ToDictionary(c => c.Type, c => c.Value)
+                Claims = claims.ToDictionary(c => c.Type, c => c.Value),
             };
             return vm;
         }

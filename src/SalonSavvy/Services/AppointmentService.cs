@@ -16,7 +16,7 @@ namespace SalonSavvy.Services {
         private GenericRepository _repo;
         public AppointmentService(GenericRepository repo) {
             _repo = repo;
-        }
+            }
 
         public IQueryable<TechAppointment> GetUpcomingAppointments() {
 
@@ -26,7 +26,7 @@ namespace SalonSavvy.Services {
             var scheduleDays = new DateTime[6];
             var start = DateTime.Today;
             start = start.Subtract(start.TimeOfDay);
-            var end = start.AddDays(6);
+            var end = start.AddDays(7);
 
             var count = 0;
             var dayCount = 0;
@@ -38,12 +38,12 @@ namespace SalonSavvy.Services {
                 if(dayOfWeek == DayOfWeek.Sunday) {
                     dayCount++;
                     schedDate = DateTime.Today.AddDays(dayCount);
-                }
+                    }
                 scheduleDays[count] = schedDate;
 
                 dayCount++;
                 count++;
-            };
+                };
 
             var TechsAndAppts = from u in _repo.Query<ApplicationUser>()
                                 where (u.IsTechnician)
@@ -61,28 +61,31 @@ namespace SalonSavvy.Services {
                                                     where (v.AppointmentDateTime >= start && v.AppointmentDateTime < end)
                                                     select new AppointmentViewModel {
                                                         AppointmentDateTime = v.AppointmentDateTime,
-                                                        AppointmentTypeId = v.AppointmentTypeId
-                                                        
+                                                        AppointmentTypeName = v.AppointmentTypeName
+
                                                         }).ToList()
                                     };
 
-                      
-            foreach (TechAppointment a in TechsAndAppts) {
-                (from at in _repo.Query<AppointmentType>()
-                 //where (a.AppointmentTypeId = at.Id)
-                 select new AppointmentTypeViewModel {
-                     TypeName = at.TypeName
-                 }).ToList();
-            }; 
+
+            //foreach(TechAppointment a in TechsAndAppts) {
+            //    (from at in _repo.Query<AppointmentType>()
+            //         //where (a.AppointmentTypeId = at.Id)
+            //     select new AppointmentTypeViewModel {
+            //         TypeName = at.TypeName
+            //         }).ToList();
+            //    };
 
             return TechsAndAppts;
-        }
+            }
+
+
+
         //public IList<AppointmentDTO> GetUpcomingAppointments() {
         //    var start = DateTime.Now;
         //    start = start.Subtract(start.TimeOfDay);
         //    var end = start.AddDays(7);
 
-            
+
         //    var appts = (from a in _repo.Query<Appointment>()
         //                 where a.AppointmentDateTime >= start && a.AppointmentDateTime <= end
         //                 orderby a.AppointmentDateTime descending
@@ -93,54 +96,54 @@ namespace SalonSavvy.Services {
         //                     AppointmentType = a.AppointmentType
         //                 }).ToList();         
 
-            
+
         //    foreach(var dataitem in appts) {
         //        Console.WriteLine("appts dataitem: " + dataitem);
         //    }
 
         //    return appts as IList<AppointmentDTO>;
-                              
-                  
-              //select new {
-              //    TechName = t.FirstName + " " + t.LastName,
-              //    CustomerName = c.FirstName + " " + c.LastName,
-              //    //TypeName = ty.TypeName,
-              //    AppointmentDateTime = a.AppointmentDateTime
+
+
+        //select new {
+        //    TechName = t.FirstName + " " + t.LastName,
+        //    CustomerName = c.FirstName + " " + c.LastName,
+        //    //TypeName = ty.TypeName,
+        //    AppointmentDateTime = a.AppointmentDateTime
 
 
 
-              //select new AppointmentDTO() {
-              //select new {
-              //    AppointmentDateTime = AppointmentDateTime,
-              //    CustomerUser = new UserDTO() {
-              //        FirstName = CustomerFirstName,
-              //        LastName = CustomerLastName
-              //    },
-              //    TechUser = new UserDTO() {
-              //        FirstName = TechFirstName,
-              //        LastName = TechLastName,
-              //        DayOff = DayOff,
-              //        BeginLunchBreak = BeginLunchBreak,
-              //        EndLunchBreak = EndLunchBreak,
-              //        IsStylist = IsStylist,
-              //        IsNailTech = IsNailTech,
-              //        IsEstician = IsEstician
-              //    },
-              //    AppointmentType = new AppointmentTypeDTO() {
-              //        TypeName = TypeName,
-              //        TypeDuration = TypeDuration
-              //    }
-              //}).ToList();
+        //select new AppointmentDTO() {
+        //select new {
+        //    AppointmentDateTime = AppointmentDateTime,
+        //    CustomerUser = new UserDTO() {
+        //        FirstName = CustomerFirstName,
+        //        LastName = CustomerLastName
+        //    },
+        //    TechUser = new UserDTO() {
+        //        FirstName = TechFirstName,
+        //        LastName = TechLastName,
+        //        DayOff = DayOff,
+        //        BeginLunchBreak = BeginLunchBreak,
+        //        EndLunchBreak = EndLunchBreak,
+        //        IsStylist = IsStylist,
+        //        IsNailTech = IsNailTech,
+        //        IsEstician = IsEstician
+        //    },
+        //    AppointmentType = new AppointmentTypeDTO() {
+        //        TypeName = TypeName,
+        //        TypeDuration = TypeDuration
+        //    }
+        //}).ToList();
 
-              //foreach(var dataitem in techappts) {
-              //    CustomerName = CustomerFirstName + " " + CustomerLastName;
-              //    TechName = TechFirstName + " " + TechLastName;
-              //    Console.WriteLine("dataitem: " + dataitem);
-              //}
+        //foreach(var dataitem in techappts) {
+        //    CustomerName = CustomerFirstName + " " + CustomerLastName;
+        //    TechName = TechFirstName + " " + TechLastName;
+        //    Console.WriteLine("dataitem: " + dataitem);
+        //}
 
 
-             
-        
+
+
 
 
 
@@ -174,20 +177,16 @@ namespace SalonSavvy.Services {
         //}
 
         // add a new appointment
-        //public void AddAppointment(AppointmentDTO dto) {
-        //    var dbItem = new Appointment() {
-        //        Customer = new ApplicationUser(), 
-        //        StylistId = dto.StylistName,
-        //        AppointmentDateTime = dto.AppointmentDateTime,
-        //        AppointmentType = new AppointmentType() {
-        //            TypeDuration = dto.AppointmentType.TypeDuration,
-        //            TypeName = dto.AppointmentType.TypeName
-        //        }                       
-        //    };
+        public void AddAppointment(AppointmentDTO dto) {
+            var dbItem = new Appointment() {
+                CustomerName = dto.CustomerName,
+                TechId = dto.TechId,
+                AppointmentDateTime = dto.AppointmentDateTime,
+                AppointmentTypeName = dto.AppointmentTypeName
+                };
 
-        //    _appointmentRepo.AddAppointment(dbItem);
-        //}
-
+            _repo.Add(dbItem);
+            }
 
         //update an appointment
         //public void UpdateAppointment(AppointmentDTO dto) {
@@ -210,5 +209,5 @@ namespace SalonSavvy.Services {
         //}
 
 
-    }
+        }
 }

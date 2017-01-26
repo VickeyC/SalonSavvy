@@ -8,17 +8,13 @@ namespace SalonSavvy.Models {
     public class Appointment {
         public int Id { get; set; }
 
-        public string CustomerId { get; set; }
-        [ForeignKey("CustomerId")]
-        public ApplicationUser CustomerUser { get; set; }
-
+        public string CustomerName { get; set; }
+        
         public string TechId { get; set; }
         [ForeignKey("TechId")]
         public ApplicationUser TechUser { get; set; }
 
-        public int AppointmentTypeId { get; set; }
-        [ForeignKey("AppointmentTypeId")]
-        public AppointmentType TechAppointments { get; set; }
+        public string AppointmentTypeName { get; set; }
         
         public DateTime AppointmentDateTime { get; set; }
     }

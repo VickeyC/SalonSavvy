@@ -138,13 +138,9 @@ namespace SalonSavvy.Controllers {
     export class AppointmentController {
 
         public schedule;
-        public appointmentSelection;
-        public appointmentToAdd;
-        public appointmentToUpdate;
-        public appointmentTypes;
-        public appointmentInfo;
+        public timeSlot;
+        public scheduleDay;
         public techAppts;
-        public scheduleArray;
         public scheduleDay1;
         public scheduleDay2;
         public scheduleDay3;
@@ -157,77 +153,46 @@ namespace SalonSavvy.Controllers {
         public schedule4;
         public schedule5;
         public schedule6;
-                
+        
+        public selectedAppt;
+        public toastMsg;
+
+
         //open the Add modal for Appointment------------------------------------------------------------------------>>>
         //-- Open the modal and pre-populate with selection criteria for a new appointment --------------------------
-        public openAddModal(appointmentSelection) {
+        public openAddModal(techName, timeSlot, scheduleDay, isStylist, isNailTech, isEstician, techId) {
+            var addApptInfo;
             let modalInstance = this.$uibModal.open({
                 templateUrl: 'addModalAppointment.html',
+                bindToController: true,
                 controller: AddAppointmentController,
                 controllerAs: 'modal',
                 resolve: {
 
-                    // extract the stylist name and return it to the modal
-                    stylist: function () {
-                        var str = JSON.stringify(appointmentSelection);
-                        var str2 = str.match(/stylistName":"[a-zA-Z]+\s[a-zA-Z]+"/g);
-                        var str3 = JSON.stringify(str2);
-                        console.log("str3 is: " + str3);
-                        var str4 = str3.match(/[A-Za-z]+\s[A-Za-z]+/g)
-                        var stylist = JSON.stringify(str4);
-                        console.log("stylist is: " + stylist);
-                        return stylist;
-                    }, //end stylist function
+                    // extract the selection info and return it to the modal
+                    addApptInfo: function () {
 
-                    // extract the available slots and return them to the modal
-                    availableSlots: function () {
+                        addApptInfo = {
+                            techName: techName,
+                            timeSlot: timeSlot,
+                            scheduleDay: scheduleDay,
+                            isStylist: isStylist,
+                            isNailTech: isNailTech,
+                            isEstician: isEstician,
+                            techId: techId
+                        };
 
-                        var str = JSON.stringify(appointmentSelection);
-                        console.log(str);
+                        return addApptInfo;
+                            
+                    },
 
-                        // build the available time slots for the selected stylist and day
-                        var availableSlots = ["9:00 am", "10:00 am", "11:00 am", "12:00 pm", "1:00 pm", "2:00 pm", "3:00 pm", "4:00 pm", "5:00 pm"];
-                        var fullSlots = new Array();
-                        fullSlots = str.match(/9:00 am|10:00 am|11:00 am|12:00 pm|1:00 pm|2:00 pm|3:00 pm|4:00 pm|5:00 pm/g);
-
-                        for (var i = 0; i < fullSlots.length; ++i) {
-                            for (var k = 0; k < availableSlots.length; k++) {
-                                if (availableSlots[k] == fullSlots[i]) {
-                                    availableSlots.splice(k, 1);
-                                }
-                            }  // end second for
-                        }  //end first for
-                        console.log("availableSlots is: " + availableSlots);
-
-                        return availableSlots;
-                    },  //end availableSlots function
-
-                    // get a list of appointment types for the pulldown
-                    getAllAppointmentTypes: function () {
-                        var appointmentTypes = appointmentTypes;
-                        return appointmentTypes;
-                    }
-
-
-                    } // end resolve for openAddModal
-                })  //end $uibModal.open
-
+                } // end resolve for openAddModal
+            })  //end $uibModal.open
 
         }  // end openAddModal
+
+
         
-
-            //modalInstance.result
-            //    .then((appointmentToAdd) => {
-            //        this.$http.post('/api/appointment', appointmentToAdd)
-            //            .then((response) => {
-            //            })
-            //            .catch((reason) => {
-            //            })
-            //    })
-            //    .catch((reason) => {
-            //    });
-
-        //}
 
 
         //open the update modal for Appointment ---------------------------------------------------------------
@@ -277,15 +242,20 @@ namespace SalonSavvy.Controllers {
 
         //}
 
-        
 
-        // Constructor for Appointment -------------------------------------------------------------------------------
-        constructor(private $http: ng.IHttpService, private $uibModal: ng.ui.bootstrap.IModalService) {
 
+        // Constructor for Appointment  (list of technicians and openings)  -------------------------------------------------------------------------------
+        constructor(private $http: ng.IHttpService, private $uibModal: ng.ui.bootstrap.IModalService, private $stateParams, private $state: ng.ui.IStateService, private $mdToast: ng.material.IToastService, private accountService: SalonSavvy.Services.AccountService) {
             var count = 0;
             var dayCount = 0;
             var scheduleDates = [];
-            
+
+            if (!accountService.isLoggedIn()) {
+                this.$state.go('home');
+                this.toastMsg = "Please log in before scheduling an appointment";
+                this.displayToast(this.$mdToast);
+            }
+
             while (count < 6) {
                 var dayOfWeek = moment().add(dayCount, 'days').format("ddd");
                 if (dayOfWeek == "Sun") {
@@ -316,6 +286,10 @@ namespace SalonSavvy.Controllers {
                         let scheduleArray = [];
                         while (i < techAppts.length) {
                             this.techName = techAppts[i].techName;
+                            this.isStylist = techAppts[i].isStylist;
+                            this.isNailTech = techAppts[i].isNailTech;
+                            this.isEstician = techAppts[i].isEstician;
+                            this.techId = techAppts[i].techId;
                             this.nineAm = buildTimeSlot(scheduleDate, techAppts, i, "9:00 am");
                             this.tenAm = buildTimeSlot(scheduleDate, techAppts, i, "10:00 am");
                             this.elevenAm = buildTimeSlot(scheduleDate, techAppts, i, "11:00 am");
@@ -325,7 +299,7 @@ namespace SalonSavvy.Controllers {
                             this.threePm = buildTimeSlot(scheduleDate, techAppts, i, "3:00 pm");
                             this.fourPm = buildTimeSlot(scheduleDate, techAppts, i, "4:00 pm");
                             this.fivePm = buildTimeSlot(scheduleDate, techAppts, i, "5:00 pm");
-                            scheduleArray.push({ scheduleDate: this.scheduleDate, techName: this.techName, nineAm: this.nineAm, tenAm: this.tenAm, elevenAm: this.elevenAm, noon: this.noon, onePm: this.onePm, twoPm: this.twoPm, threePm: this.threePm, fourPm: this.fourPm, fivePm: this.fivePm });
+                            scheduleArray.push({ scheduleDate: this.scheduleDate, techName: this.techName, isStylist: this.isStylist, isNailTech: this.isNailTech, isEstician: this.isEstician, techId: this.techId, nineAm: this.nineAm, tenAm: this.tenAm, elevenAm: this.elevenAm, noon: this.noon, onePm: this.onePm, twoPm: this.twoPm, threePm: this.threePm, fourPm: this.fourPm, fivePm: this.fivePm });
                             ++i;
                         };
                         return scheduleArray;
@@ -333,61 +307,129 @@ namespace SalonSavvy.Controllers {
 
                     function buildTimeSlot(scheduleDate, techAppts, i, timeSlot) {
                         let sched = "open";
+                        let timeSlotMatch = timeSlot.slice(0, 5);
+                        let compareDate = scheduleDate.concat(" ", timeSlot);
+
                         if (techAppts[i].dayOff == moment(scheduleDate).format("dddd")) {
-                            sched = "unavailable"
+                            sched = "Unavailable"
                         } else {
-                            if (techAppts[i].beginLunchBreak == timeSlot) {
-                                sched = "lunch"
+                            if (techAppts[i].beginLunchBreak == timeSlotMatch) {
+                                sched = "Lunch"
                             } else {
                                 let j = 0;
-                                let compareDate = (scheduleDate + " " + timeSlot);
                                 while (j < techAppts[i].appointments.length) {
-                                    let apptDateTime = moment(techAppts[i].appointments[j].appointmentDateTime).format("YYYY-MM-DD hh:mm a")
+                                    console.log(`compareDate: ${compareDate}`);
+                                    let apptDateTime = moment(techAppts[i].appointments[j].appointmentDateTime).format("YYYY-MM-DD h:mm a")
+                                    console.log(`found an appointment for ${techAppts[i].techName} for ${apptDateTime}`);
                                     if (apptDateTime == compareDate) {
-                                        sched = "booked"
+                                        console.log(`**found a match!`);
+                                        sched = "Booked"
                                     }
                                     j++;
                                 }
                             }
                         }
                         return sched;
-                     }; // end buildTimeSlot
+                    }; // end buildTimeSlot
 
-                        this.schedule1 = buildSchedule(scheduleDates[0], this.techAppts);
+                    this.schedule1 = buildSchedule(scheduleDates[0], this.techAppts);
 
-                        this.schedule2 = buildSchedule(scheduleDates[1], this.techAppts);
+                    this.schedule2 = buildSchedule(scheduleDates[1], this.techAppts);
 
-                        this.schedule3 = buildSchedule(scheduleDates[2], this.techAppts);
+                    this.schedule3 = buildSchedule(scheduleDates[2], this.techAppts);
 
-                        this.schedule4 = buildSchedule(scheduleDates[3], this.techAppts);
+                    this.schedule4 = buildSchedule(scheduleDates[3], this.techAppts);
 
-                        this.schedule5 = buildSchedule(scheduleDates[4], this.techAppts);
+                    this.schedule5 = buildSchedule(scheduleDates[4], this.techAppts);
 
-                        this.schedule6 = buildSchedule(scheduleDates[5], this.techAppts);
+                    this.schedule6 = buildSchedule(scheduleDates[5], this.techAppts);
 
-                    }); // end the .then in the http call
-            }   //end constructor for AppointmentController
-        
-        }  //end AppointmentController
+                }); // end the .then in the http call
+        }   //end constructor for AppointmentController
 
-    
+        public displayToast($mdToast) {
+            var toast = $mdToast.simple()
+                .textContent(this.toastMsg)
+                .position('bottom left')
+                .hideDelay(5000);
+
+            $mdToast.show(toast);
+        };
+
+    }  //end AppointmentController
+
+
 
     // Add appointment Controller ---------------------------------------------------------------------------------->
+    // Create the customer's selected appointment record
     export class AddAppointmentController {
+        public allApptTypes;
+        public validApptTypes = [];
+        public selectedType;
+        private toastMsg;
 
-        //public addAppointment() {
-        //    this.$http.post(`/api/appointment/${this.appointmentToAdd.id}`, this.appointmentToAdd)
-        //        .then((results) => {
-        //            this.$uibModalInstance.close(this.appointmentToAdd);
-        //        });
-        //}
+        public addAppointment(addApptInfo, selectedType) {
+            let apptDate = moment(addApptInfo.scheduleDay, "dddd MMM Do").format("MM/DD/YYYY");
+            let apptTime = moment(addApptInfo.timeSlot, "hh:mm a").format("hh:mm a");
+            let apptDateTime = (apptDate + " " + apptTime);
+            console.log(`Adding appointment for: ${apptDateTime}`);
+            let appointmentToAdd = {
+                techId: addApptInfo.techId,
+                customerName: this.accountService.getUserName(),
+                appointmentDateTime: apptDateTime,
+                appointmentTypeName: selectedType.typeName
+            };
+            this.$http.post(`/api/appointment`, appointmentToAdd)
+                .then((results) => {
+                    this.$uibModalInstance.close(appointmentToAdd);
+                    this.$state.go('appointment');
+                    this.toastMsg = "Your appointment has been successfully added";
+                    this.displayToast(this.$mdToast);
+                })
+                .catch((reason) => {
+                })
+        };
 
+        public displayToast($mdToast) {
+            var toast = $mdToast.simple()
+                .textContent(this.toastMsg)
+                .position('bottom left')
+                .hideDelay(5000);
 
+            $mdToast.show(toast);
+        };
 
-        // Note that the fields used to pre-populate the modal are included in this constructor
-        constructor(private $http: ng.IHttpService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, public stylist, public availableSlots, public appointmentTypes) {
-        }
-    }
+        // constructor to populate the modal
+        constructor(private $http: ng.IHttpService, private $uibModalInstance: ng.ui.bootstrap.IModalServiceInstance, private $stateParams, private $state: ng.ui.IStateService, private $mdToast: ng.material.IToastService, private accountService: SalonSavvy.Services.AccountService, public addApptInfo) {
+
+            $http.get('/api/appointmentType')
+                .then((results) => {
+                    this.allApptTypes = results.data;
+                    let i = 0;
+                    let j = 0;
+                    while (j < this.allApptTypes.length) {
+                        if (this.allApptTypes[j].typeSkill == "Stylist" && this.addApptInfo.isStylist) {
+                            this.validApptTypes[i] = this.allApptTypes[j];
+                            i++;
+                        }; 
+                        if (this.allApptTypes[j].typeSkill == "Nail Tech" && this.addApptInfo.isNailTech) {
+                            this.validApptTypes[i] = this.allApptTypes[j];
+                            i++;
+                        };
+                        if (this.allApptTypes[j].typeSkill == "Estician" && this.addApptInfo.isEstician) {
+                            this.validApptTypes[i] = this.allApptTypes[j];
+                            i++;
+                        };
+                        j++;
+                    }
+                    return this.validApptTypes;
+                    })
+                .catch((reason) => {
+                });
+        }  //end constructor
+        
+    }; // end class AddAppointmentController
+
 
     export class SecretController {
         public secrets;
@@ -398,8 +440,4 @@ namespace SalonSavvy.Controllers {
             });
         }
     }
-
-
-
-
-}
+};

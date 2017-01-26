@@ -25,9 +25,10 @@ namespace SalonSavvy.Services
                         TypeSkill = t.TypeSkill
                     }).ToList();
         }
+        
 
-        // find a specific appointment type by id
-        public IList<AppointmentTypeDTO> FindAppointmentType(int id) {
+    // find a specific appointment type by id
+    public IList<AppointmentTypeDTO> FindAppointmentType(int id) {
 
             return (from t in _repo.Query<AppointmentType>()
                     where t.Id == id

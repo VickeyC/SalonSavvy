@@ -26,12 +26,22 @@ namespace SalonSavvy.Controllers
         
         [HttpGet("techAppointments")]
 
-        // /api/appointments/techAppointments
+        // /api/appointment/techAppointments
         public IEnumerable<TechAppointment> Get() {
 
             return _appointmentService.GetUpcomingAppointments();
 
         }
+
+        [HttpGet]
+
+        //  /api/appointmentType
+        public IList<AppointmentTypeDTO> GetAllAppointmentTypes() {
+
+            return _appointmentTypeService.GetAllAppointmentTypes();
+
+            }
+
 
         //[HttpGet ("users")]
         //public IList<UserDTO> GetAllTechUsers() {
@@ -57,17 +67,18 @@ namespace SalonSavvy.Controllers
         //    return _appointmentTypeService.GetAllAppointmentTypes();
         //}
 
+
         // add a new appointment
-        //[HttpPost]
-        //public IActionResult PostAppointment([FromBody]AppointmentDTO appointment) {
-        //    if(!ModelState.IsValid) {
-        //        return BadRequest(this.ModelState);
-        //    }
+        [HttpPost]
+        public IActionResult PostAppointment([FromBody]AppointmentDTO appointment) {
+            if(!ModelState.IsValid) {
+                return BadRequest(this.ModelState);
+            }
 
-        //    _appointmentService.AddAppointment(appointment);
+            _appointmentService.AddAppointment(appointment);
 
-        //    return Ok();
-        //}
+            return Ok();
+        }
 
         // update the appointment
         //[HttpPost("{id}")]
@@ -97,5 +108,5 @@ namespace SalonSavvy.Controllers
         //    return Ok();
 
         //}
-    }
+        }
 }

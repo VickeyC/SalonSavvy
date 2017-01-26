@@ -23,7 +23,7 @@ namespace SalonSavvy.Models
         public bool IsEstician { get; set; }
         [InverseProperty("TechUser")]
         public ICollection<Appointment> TechAppointments { get; set; }
-        [InverseProperty("CustomerUser")]
-        public ICollection<Appointment> CustomerAppointments { get; set; }
+        //[InverseProperty("CustomerUser")]
+        //public ICollection<Appointment> CustomerAppointments { get; set; }
     }
 }

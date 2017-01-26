@@ -125,7 +125,7 @@ namespace SalonSavvy.Data {
 
                 context.AppointmentTypes.AddRange(
                     new AppointmentType { TypeName = "Haircut", TypeDuration = "30", TypeSkill = "Stylist" },
-                    new AppointmentType { TypeName = "Highlight", TypeDuration = "120", TypeSkill = "Stylist" },
+                    new AppointmentType { TypeName = "Highlight", TypeDuration = "60", TypeSkill = "Stylist" },
                     new AppointmentType { TypeName = "Facial", TypeDuration = "60", TypeSkill = "Estician" },
                     new AppointmentType { TypeName = "Pedicure", TypeDuration = "60", TypeSkill = "NailTech" }
                 );

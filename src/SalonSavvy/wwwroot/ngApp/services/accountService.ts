@@ -29,6 +29,7 @@ namespace SalonSavvy.Services {
                         resolve();
                 }).catch((result) => {
                     var messages = this.flattenValidation(result.data);
+                    console.error(`login messages: ${messages}`);
                     reject(messages);
                 });
             });

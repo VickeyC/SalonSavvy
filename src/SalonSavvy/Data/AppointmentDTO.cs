@@ -8,12 +8,12 @@ namespace SalonSavvy.Data {
     public class AppointmentDTO {
         public int Id { get; set; }
         
-        public UserDTO CustomerUser { get; set; }
+        public string CustomerName { get; set; }
 
-        public UserDTO TechUser { get; set; }
+        public string TechId { get; set; }
 
         public DateTime AppointmentDateTime { get; set; }
         
-        public AppointmentTypeDTO AppointmentType { get; set; }
-    }
+        public string AppointmentTypeName  { get; set; }
+        }
 }

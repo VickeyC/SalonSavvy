@@ -10,7 +10,7 @@
 </fieldset>-->
 
 <!--<fieldset>
-    <legend>Login Locally</legend>
+    <legend>Log into Salon Savvy</legend>
     <ul>
         <li ng-repeat="error in controller.validationMessages">
             {{error}}
@@ -33,11 +33,14 @@
 
 <div class="width100 height100">
     <h1>Log into Salon Savvy</h1>
+        <div ng-repeat="error in controller.validationMessages">
+            {{error}}
+        </div>
     <form ng-submit="controller.login()">
         <md-input-container class="md-block" md-no-float flex="30">
             <div layout="row" flex>
                 <ng-md-icon icon="account_box" style="fill:#000000"></ng-md-icon>
-                <input ng-required="true" name="userName" ng-model="controller.loginUser.userName" placeholder="Login Email" />
+                <input ng-required="true" name="userEmail" ng-model="controller.loginUser.email" placeholder="Login Email" />
             </div>
         </md-input-container>
         <br />
@@ -52,7 +55,6 @@
 
         <md-button class="btn1 md-raised md-cornered" ng-disabled="simple.$invalid" type="submit">Log in to Salon Savvy</md-button>
 
-        <br />
         <br />
         <br />
         <p>Don't have an account? <md-button class="btn1 md-raised md-cornered" ng-disabled="simple.$invalid" type="submit"><a href="/register">Register</a></md-button> for a Salon Savvy account!</p>

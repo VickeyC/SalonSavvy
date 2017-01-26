@@ -3,211 +3,838 @@
 <br />
 
 <md-tabs>
-        <md-tab class="all-tabs" label={{controller.scheduleDay1}}>
-            
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule1">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+    <md-tab class="all-tabs" label={{controller.scheduleDay1}}>
 
-        <md-tab class="all-tabs" label={{controller.scheduleDay2}}>
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule1">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
+                    
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay1, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay1-->
 
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule2">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+    <md-tab class="all-tabs" label={{controller.scheduleDay2}}>
 
-        <md-tab class="all-tabs" label={{controller.scheduleDay3}}>
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule2">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
 
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule3">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
 
-        <md-tab class="all-tabs" label={{controller.scheduleDay4}}>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
 
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule4">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
 
-        <md-tab class="all-tabs" label={{controller.scheduleDay5}}>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
 
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule5">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
 
-        <md-tab class="all-tabs" label={{controller.scheduleDay6}}>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
 
-            <table border="1" class="table table-bordered table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th>Technician</th>
-                        <th>9 AM</th>
-                        <th>10 AM</th>
-                        <th>11 AM</th>
-                        <th>Noon</th>
-                        <th>1 PM</th>
-                        <th>2 PM</th>
-                        <th>3 PM</th>
-                        <th>4 PM</th>
-                        <th>5 PM</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="item in controller.schedule6">
-                        <td>{{item.techName}}</td>
-                        <td>{{item.nineAm}}</td>
-                        <td>{{item.tenAm}}</td>
-                        <td>{{item.elevenAm}}</td>
-                        <td>{{item.noon}}</td>
-                        <td>{{item.onePm}}</td>
-                        <td>{{item.twoPm}}</td>
-                        <td>{{item.threePm}}</td>
-                        <td>{{item.fourPm}}</td>
-                        <td>{{item.fivePm}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </md-tab>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
 
-    </md-tabs>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay2, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay2-->
+
+    <md-tab class="all-tabs" label={{controller.scheduleDay3}}>
+
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule3">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay3, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay3-->
+
+    <md-tab class="all-tabs" label={{controller.scheduleDay4}}>
+
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule4">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay4, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay4-->
+
+    <md-tab class="all-tabs" label={{controller.scheduleDay5}}>
+
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule5">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay5, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay5-->
+
+    <md-tab class="all-tabs" label={{controller.scheduleDay6}}>
+
+        <div class="divTable" style="border: 2px solid #000;">
+            <div class="divTableHeading">
+                <div class="divTableHead">Technician</div>
+                <div class="divTableHead">9 AM</div>
+                <div class="divTableHead">10 AM</div>
+                <div class="divTableHead">11 AM</div>
+                <div class="divTableHead">Noon</div>
+                <div class="divTableHead">1 PM</div>
+                <div class="divTableHead">2 PM</div>
+                <div class="divTableHead">3 PM</div>
+                <div class="divTableHead">4 PM</div>
+                <div class="divTableHead">5 PM</div>
+            </div>
+            <div class="divTableBody">
+                <div class="divTableRow"
+                     ng-repeat="apptItem in controller.schedule6">
+                    <div class="divTableCell">{{apptItem.techName}}</div>
+                    <div class="noShow">{{apptItem.techId}}</div>
+                    <div class="noShow">{{apptItem.isStylist}}</div>
+                    <div class="noShow">{{apptItem.isNailTech}}</div>
+                    <div class="noShow">{{apptItem.isEstician}}</div>
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.nineAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '9:00 am', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.nineAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.tenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '10:00 am', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.tenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.elevenAm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '11:00 am', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.elevenAm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.noon">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '12:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.noon}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.onePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '1:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.onePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.twoPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '2:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.twoPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.threePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '3:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.threePm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fourPm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '4:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fourPm}}
+                        </span>
+                    </div>
+
+                    <div class="divTableCell"
+                         ng-switch on="apptItem.fivePm">
+                        <span ng-switch-when="open">
+                            <button type="button" ng-click="controller.openAddModal(apptItem.techName, '5:00 pm', controller.scheduleDay6, apptItem.isStylist, apptItem.isNailTech, apptItem.isEstician, apptItem.techId)">Schedule Appt</button>
+                        </span>
+                        <span ng-switch-default>
+                            {{apptItem.fivePm}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-tab> <!--End Tab for ScheduleDay6-->
+
+</md-tabs>
+        <!-- DivTable.com -->
+
+
+<!--Add Modal starts here------------------------------------------------------------------------>
+<script type="text/ng-template" id="addModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">You have selected to schedule an appointment with {{modal.addApptInfo.techName}} at {{modal.addApptInfo.timeSlot}} on {{modal.addApptInfo.scheduleDay}}</h5>
+
+    </div> <!--modal-header-->
+
+    <div class="modal-body">
+        <div class="container">
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="typeName" class="col-sm-1 control-label">Appointment Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <select id="typeName" type="text" size="20" class="form-control" ng-model="selectedType" ng-options="type.typeName for type in modal.validApptTypes"/>
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+            </div><!--form-horizontal-->
+        </div>
+    </div><!--modal-body-->
+
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-default" value="Submit" ng-click="modal.addAppointment(modal.addApptInfo, selectedType)"></>
+        <button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>
+    </div><!--modal-footer-->
+</script>
+
+
+<!--Update Modal starts here-------------------------------------------------------------------------------->
+<script type="text/ng-template" id="updateModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Update Appointment</h5>
+    </div> <!--modal-header-->
+
+    <div class="modal-body">
+        <div class="container">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label for="typeName" class="col-sm-1 control-label">Appointment:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeName" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeName">
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeDuration" class="col-sm-1 control-label">Appointment Duration:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeDuration" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeDuration" />
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeSkill" class="col-sm-1 control-label">Skill Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeSkill" type="text" size="20" class="form-control" ng-model="modal.appointmentToUpdate.typeSkill" />
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+            </form>
+        </div><!--container-->
+    </div><!--modal-body-->
+
+    <div class="modal-footer">
+        <input type="submit" ng-click="modal.updateAppointment()" class="btn btn-default" value="Submit"></>
+        <button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>
+    </div><!--modal-footer-->
+</script>
+
+<!--Delete Modal starts here-------------------------------------------------------------------------->
+<script type="text/ng-template" id="deleteModalAppointment.html">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">Delete Selected Appointment</h5>
+    </div><!--modal-header-->
+
+    <div class="modal-body">
+        <div class="container">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <label for="typeName" class="col-sm-1 control-label">Appointment Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeName" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeName" />
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeDuration" class="col-sm-1 control-label">Appointment Duration:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeDuration" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeDuration" />
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+
+                <br />
+                <div class="form-group">
+                    <label for="typeSkill" class="col-sm-1 control-label">Skill Type:</label>
+                    <br />
+                    <div class="col-sm-8">
+                        <input id="typeSkill" type="text" size="20" class="form-control" readonly ng-model="modal.apptToDelete.typeSkill" />
+                    </div><!--col-sm-8-->
+                </div><!--form-group-->
+            </form>
+        </div><!--container-->
+    </div><!--modal-body-->
+
+    <div class="modal-footer">
+        <input type="submit" ng-click="modal.deleteAppointment()" class="btn btn-default" value="Delete"></>
+        <button type="button" ng-click="$dismiss()" class="btn btn-default">Cancel</button>
+    </div><!--modal-footer-->
+
+</script>
 
 
 
